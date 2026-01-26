@@ -1,4 +1,4 @@
-# 🚀 Distirbuted URL Shortener
+# 🚀 Distributed URL Shortener
 
 [![Backend](https://img.shields.io/badge/Backend-Node_Express_MongoDB-brightgreen)](https://github.com/pranitakash/url-shortener/tree/main/backend)
 [![Frontend](https://img.shields.io/badge/Frontend-React_Vite-blue)](https://github.com/pranitakash/url-shortener/tree/main/frontend)
@@ -24,6 +24,7 @@ npm run dev     # http://localhost:5000
 cd ../frontend
 npm i
 npm run dev     # http://localhost:5173
+```
 
 ## 🚀 LIVE DEMO
 **[Try it now](https://your-vercel-frontend.vercel.app)**
