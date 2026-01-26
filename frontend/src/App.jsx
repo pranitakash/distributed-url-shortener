@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import UrlForm from "./components/UrlForm";
 import ShortenedUrl from "./components/ShortenedUrl";
 
-// ✅ FIX: use environment variable, NOT localhost
+// ✅ use backend from env (NOT localhost)
 const API_BASE = import.meta.env.VITE_BACKEND_URL + "/api";
 
 export default function App() {
@@ -12,27 +12,27 @@ export default function App() {
 
   const handleShorten = async (longUrl, customAlias) => {
     try {
-      const body = { longUrl };
-      if (customAlias) body.customAlias = customAlias;
-
-      const res = await fetch(`${API_BASE}`, {
+      const res = await fetch(`${API_BASE}/urls`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify({
+          longUrl,
+          customAlias: customAlias || undefined,
+        }),
       });
 
       if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || "Failed to shorten URL");
+        const errorData = await res.json();
+        throw new Error(errorData.error || "Failed to shorten URL");
       }
 
       const data = await res.json();
       setUrls([data, ...urls]);
       setShowForm(false);
     } catch (err) {
-      alert(err.message || "Failed to fetch");
+      alert(err.message);
     }
   };
 
