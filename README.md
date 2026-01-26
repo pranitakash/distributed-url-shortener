@@ -27,4 +27,5 @@ npm run dev     # http://localhost:5173
 ```
 
 ## 🚀 LIVE DEMO
-**[Try it now](distributed-url-shortener.vercel.app)**
+**[Live Demo](https://distributed-url-shortener.vercel.app)
+**
