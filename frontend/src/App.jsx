@@ -15,7 +15,7 @@ export default function App() {
       const body = { longUrl };
       if (customAlias) body.customAlias = customAlias;
 
-      const res = await fetch(`${API_BASE}/urls`, {
+      const res = await fetch(`${API_BASE}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
