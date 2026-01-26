@@ -24,3 +24,6 @@ npm run dev     # http://localhost:5000
 cd ../frontend
 npm i
 npm run dev     # http://localhost:5173
+
+## 🚀 LIVE DEMO
+**[Try it now](https://your-vercel-frontend.vercel.app)**
