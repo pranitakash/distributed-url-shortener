@@ -1,60 +1,64 @@
 import { useState } from "react";
-import Layout from "./components/Layout";
-import UrlForm from "./components/UrlForm";
-import ShortenedUrl from "./components/ShortenedUrl";
 
-const API_BASE = "http://localhost:5000/api";
+function App() {
+  const [url, setUrl] = useState("");
+  const [alias, setAlias] = useState("");
+  const [result, setResult] = useState("");
+  const [error, setError] = useState("");
 
-export default function App() {
-  const [urls, setUrls] = useState([]);
-  const [showForm, setShowForm] = useState(true);
+  const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
-  const handleShorten = async (longUrl, customAlias) => {
-    const body = { longUrl };
-    if (customAlias) body.customAlias = customAlias;
+  const handleSubmit = async () => {
+    setError("");
+    setResult("");
 
-    const res = await fetch(`${API_BASE}/urls`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
+    try {
+      const response = await fetch(`${API_BASE_URL}/api/shorten`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          originalUrl: url,
+          customAlias: alias,
+        }),
+      });
 
-    if (!res.ok) {
-      const data = await res.json();
-      throw new Error(data.error || "Failed to shorten URL");
+      if (!response.ok) {
+        throw new Error("Request failed");
+      }
+
+      const data = await response.json();
+      setResult(data.shortUrl);
+    } catch (err) {
+      setError("Failed to fetch");
     }
-
-    const data = await res.json();
-    setUrls([data, ...urls]);
-    setShowForm(false);
-  };
-
-  const handleNewUrl = () => {
-    setShowForm(true);
   };
 
   return (
-    <Layout>
-      <div className="main-content">
-        {showForm ? (
-          <UrlForm onShorten={handleShorten} />
-        ) : (
-          <div>
-            <button className="new-url-btn" onClick={handleNewUrl}>
-              + Create New Short URL
-            </button>
-            <div className="history-grid">
-              {urls.map((urlData, index) => (
-                <ShortenedUrl 
-                  key={index}
-                  shortUrl={urlData.shortUrl}
-                  message={urlData.message || ''}
-                />
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
-    </Layout>
+    <div style={{ padding: "40px" }}>
+      <h1>URL Shortener</h1>
+
+      <input
+        placeholder="Enter long URL"
+        value={url}
+        onChange={(e) => setUrl(e.target.value)}
+      />
+      <br /><br />
+
+      <input
+        placeholder="Optional alias"
+        value={alias}
+        onChange={(e) => setAlias(e.target.value)}
+      />
+      <br /><br />
+
+      <button onClick={handleSubmit}>Create Short URL</button>
+
+      {result && <p>Short URL: {result}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </div>
   );
 }
+
+export default App;
