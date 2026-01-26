@@ -29,3 +29,17 @@ npm run dev     # http://localhost:5173
 ## 🚀 LIVE DEMO
 **[Live Demo](https://distributed-url-shortener.vercel.app)
 **
+
+## 🛠️ Tech Stack
+
+### Frontend
+- React (Vite)
+- JavaScript
+- CSS
+- Deployed on Vercel
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- Deployed on Render
