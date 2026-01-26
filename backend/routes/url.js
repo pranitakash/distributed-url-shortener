@@ -25,9 +25,10 @@ router.post("/urls", async (req, res) => {
       customAlias: customAlias || undefined,
     });
 
+    // ✅ IMPORTANT CHANGE: BACKEND DOMAIN
     res.json({
       shortCode,
-      shortUrl: `${process.env.FRONTEND_URL}/${shortCode}`,
+      shortUrl: `https://url-shortener-api-fukf.onrender.com/${shortCode}`,
     });
   } catch (err) {
     console.error(err);
