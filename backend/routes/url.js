@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const URL = require("../models/URL");
 
-// CREATE SHORT URL
+// CREATE SHORT URL (API)
 router.post("/urls", async (req, res) => {
   try {
     const { longUrl, customAlias } = req.body;
@@ -19,35 +19,18 @@ router.post("/urls", async (req, res) => {
       return res.status(400).json({ error: "Alias already exists" });
     }
 
-    const newUrl = await URL.create({
-      fullUrl: longUrl,        // ✅ FIX: match model field
+    await URL.create({
+      fullUrl: longUrl,
       shortCode,
       customAlias: customAlias || undefined,
     });
 
     res.json({
-      shortUrl: `${process.env.BASE_URL}/${shortCode}`,
       shortCode,
+      shortUrl: `${process.env.FRONTEND_URL}/${shortCode}`,
     });
   } catch (err) {
-    console.error("CREATE ERROR:", err);
-    res.status(500).json({ error: "Server error" });
-  }
-});
-
-// REDIRECT SHORT URL
-router.get("/:shortCode", async (req, res) => {
-  try {
-    const { shortCode } = req.params;
-
-    const url = await URL.findOne({ shortCode });
-    if (!url) {
-      return res.status(404).json({ error: "URL not found" });
-    }
-
-    return res.redirect(url.fullUrl); // ✅ FIX: match model field
-  } catch (err) {
-    console.error("REDIRECT ERROR:", err);
+    console.error(err);
     res.status(500).json({ error: "Server error" });
   }
 });
