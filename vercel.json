@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/:shortCode",
+      "destination": "https://url-shortener-api-fukf.onrender.com/:shortCode"
+    }
+  ]
+}
