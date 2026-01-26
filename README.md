@@ -1,4 +1,4 @@
-# 🚀 URL Shortener
+# 🚀 Distirbuted URL Shortener
 
 [![Backend](https://img.shields.io/badge/Backend-Node_Express_MongoDB-brightgreen)](https://github.com/pranitakash/url-shortener/tree/main/backend)
 [![Frontend](https://img.shields.io/badge/Frontend-React_Vite-blue)](https://github.com/pranitakash/url-shortener/tree/main/frontend)
