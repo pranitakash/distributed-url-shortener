@@ -16,12 +16,13 @@ router.post("/urls", async (req, res) => {
 
     const existing = await URL.findOne({ shortCode });
     if (existing) {
-      return res.status(400).json({ error: "Alias already in use" });
+      return res.status(400).json({ error: "Alias already exists" });
     }
 
     const newUrl = await URL.create({
-      longUrl,
+      fullUrl: longUrl,        // ✅ FIX: match model field
       shortCode,
+      customAlias: customAlias || undefined,
     });
 
     res.json({
@@ -29,12 +30,12 @@ router.post("/urls", async (req, res) => {
       shortCode,
     });
   } catch (err) {
-    console.error(err);
+    console.error("CREATE ERROR:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-// 🔥 REDIRECT SHORT URL
+// REDIRECT SHORT URL
 router.get("/:shortCode", async (req, res) => {
   try {
     const { shortCode } = req.params;
@@ -44,9 +45,9 @@ router.get("/:shortCode", async (req, res) => {
       return res.status(404).json({ error: "URL not found" });
     }
 
-    res.redirect(url.longUrl);
+    return res.redirect(url.fullUrl); // ✅ FIX: match model field
   } catch (err) {
-    console.error(err);
+    console.error("REDIRECT ERROR:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
