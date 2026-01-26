@@ -5,6 +5,8 @@
 
 Full-stack URL shortener
 
+This project uses a React (Vite) frontend, a Node.js + Express backend, and MongoDB for storage, with the frontend deployed on Vercel and the backend deployed on Render.
+
 ## ✨ Features
 - 🔗 URL shortening (`youtube.com` → `/api/abc123`)
 - 🆔 Custom aliases (`/api/myname`)
