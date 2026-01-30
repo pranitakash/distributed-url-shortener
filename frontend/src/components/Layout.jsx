@@ -32,7 +32,7 @@ export default function Layout({ children, setCurrentPage }) {
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur-sm bg-white dark:bg-white border-b border-gray-200 dark:border-gray-200">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <button onClick={() => setCurrentPage("home")} className="text-lg font-bold text-gray-900 hover:text-green-600 transition cursor-pointer">URL Shortener</button>
+          <button onClick={() => setCurrentPage("home")} className="text-lg font-bold text-gray-900 hover:text-green-600 transition cursor-pointer">Distributed URL Shortener</button>
 
           <div className="flex items-center gap-4">
             <button
