@@ -48,7 +48,7 @@ export default function Pricing() {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-800 transition-colors duration-300">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Hero */}
       <section className="pt-24 pb-16 px-6 text-center">
         <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">

@@ -1,38 +1,40 @@
 import { useEffect, useState } from "react";
 
 export default function Layout({ children, setCurrentPage }) {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(() => {
+    // Initialize from localStorage on mount
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("theme");
+      if (stored) {
+        return stored === "dark";
+      }
+      // Fallback to system preference
+      return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+    return false;
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Initialize dark mode from localStorage or system preference
-    const stored = localStorage.getItem("theme");
-    let isDark = false;
+    // Apply theme to DOM on mount and when dark state changes
+    const applyTheme = (isDark) => {
+      if (isDark) {
+        document.documentElement.classList.add("dark");
+        console.log("Dark mode ON - dark class added to html");
+      } else {
+        document.documentElement.classList.remove("dark");
+        console.log("Dark mode OFF - dark class removed from html");
+      }
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      console.log("Theme saved to localStorage:", isDark ? "dark" : "light");
+    };
 
-    if (stored) {
-      isDark = stored === "dark";
-    } else {
-      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
-
-    setDark(isDark);
-    applyTheme(isDark);
+    applyTheme(dark);
     setMounted(true);
-  }, []);
-
-  const applyTheme = (isDark) => {
-    if (isDark) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("theme", isDark ? "dark" : "light");
-  };
+  }, [dark]);
 
   const toggleDark = () => {
-    const newDarkState = !dark;
-    setDark(newDarkState);
-    applyTheme(newDarkState);
+    setDark(!dark);
   };
 
   // Prevent flash of wrong theme
@@ -41,7 +43,7 @@ export default function Layout({ children, setCurrentPage }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300 flex flex-col">
+    <div className="flex flex-col min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* NAVBAR */}
       <header className="sticky top-0 z-50 backdrop-blur-sm bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -71,7 +73,7 @@ export default function Layout({ children, setCurrentPage }) {
       <main className="flex-1">{children}</main>
 
       {/* FOOTER */}
-      <footer className="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-32 transition-colors duration-300">
+      <footer className="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-32 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-6 py-12 text-center">
           <p className="text-xs text-gray-500 dark:text-gray-400">
             © 2026 URL Shortener. Built by Pranit Akash.

@@ -54,7 +54,7 @@ export default function App() {
   return (
     <Layout setCurrentPage={setCurrentPage}>
       {/* HERO */}
-      <section className="pt-24 pb-32 px-6 text-center bg-white dark:bg-gray-800 transition-colors duration-300">
+      <section className="pt-24 pb-32 px-6 text-center bg-white dark:bg-gray-900 transition-colors duration-300">
         <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
           Shorten URLs. <br />
           <span className="text-green-600 dark:text-green-500">Share Smarter.</span>
