@@ -1,10 +1,10 @@
 export default function About() {
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="pt-24 pb-16 px-6 text-center">
-        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
-          About <span className="text-green-600 dark:text-green-500">URL Shortener</span>
+        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900">
+          About <span className="text-green-600">URL Shortener</span>
         </h1>
         <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           Built by developers, for developers. A simple, fast, and reliable way to shorten and share URLs.
@@ -22,7 +22,7 @@ export default function About() {
 
         <div>
           <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">What We Believe</h2>
-          <ul className="space-y-4 text-gray-600 dark:text-gray-300">
+          <ul className="space-y-4 text-gray-600">
             <li className="flex gap-4">
               <span className="text-green-600 dark:text-green-500 font-bold">✓</span>
               <span><strong>Simplicity matters.</strong> We keep things minimal and intuitive, no bloat.</span>
@@ -47,7 +47,7 @@ export default function About() {
           <p className="text-gray-600 dark:text-gray-300 mb-4">
             URL Shortener is built with modern, production-ready technology:
           </p>
-          <ul className="grid md:grid-cols-2 gap-4 text-gray-600 dark:text-gray-300">
+          <ul className="grid md:grid-cols-2 gap-4 text-gray-600">
             <li>• Node.js & Express backend</li>
             <li>• React + Vite frontend</li>
             <li>• MongoDB database</li>
@@ -76,3 +76,4 @@ export default function About() {
     </div>
   );
 }
+

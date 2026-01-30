@@ -54,13 +54,13 @@ export default function App() {
   return (
     <Layout setCurrentPage={setCurrentPage}>
       {/* HERO */}
-      <section className="pt-24 pb-32 px-6 text-center bg-white dark:bg-gray-900 transition-colors duration-300">
-        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+      <section className="pt-24 pb-32 px-6 text-center bg-white">
+        <h1 className="text-5xl sm:text-6xl font-extrabold tracking-tight text-gray-900">
           Shorten URLs. <br />
-          <span className="text-green-600 dark:text-green-500">Share Smarter.</span>
+          <span className="text-green-600">Share Smarter.</span>
         </h1>
 
-        <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+        <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
           A fast, reliable and modern URL shortener built for developers and teams.
         </p>
 
@@ -88,7 +88,7 @@ export default function App() {
               )}
 
               {generatedUrl.longUrl && (
-                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-600">
+                <div className="mt-6 pt-6 border-t border-gray-200">
                   <p className="text-gray-600 dark:text-gray-300 text-sm font-medium mb-2">Original URL</p>
                   <p className="text-gray-700 dark:text-gray-200 break-all font-mono text-sm">{generatedUrl.longUrl}</p>
                 </div>
@@ -136,7 +136,7 @@ export default function App() {
                     }}
                     className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500 transition-colors duration-200 flex items-center gap-2 text-base font-bold"
                   >
-                    <span className="text-green-600 dark:text-green-500">→</span>
+                    <span className="text-green-600">→</span>
                     <span>About</span>
                   </button>
                 </li>
@@ -148,7 +148,7 @@ export default function App() {
                     }}
                     className="text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-500 transition-colors duration-200 flex items-center gap-2 text-base font-bold"
                   >
-                    <span className="text-green-600 dark:text-green-500">→</span>
+                    <span className="text-green-600">→</span>
                     <span>Pricing</span>
                   </button>
                 </li>
@@ -157,7 +157,7 @@ export default function App() {
 
             {/* Contact Developer Card */}
             <div className="rounded-2xl bg-white dark:bg-gray-700 border-2 border-gray-300 dark:border-gray-600 p-10 hover:border-green-600 dark:hover:border-green-500 hover:shadow-lg dark:hover:shadow-xl transition-all duration-300 group">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Contact <span className="text-green-600 dark:text-green-500">Developer</span></h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">Contact <span className="text-green-600">Developer</span></h3>
               <p className="text-gray-600 dark:text-gray-300 mb-8">Connect directly with the developer behind the product.</p>
               <ul className="space-y-3">
                 <li>
@@ -237,7 +237,7 @@ export default function App() {
 
       {/* CTA */}
       <section className="py-24 text-center px-6 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-        <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-4xl font-bold text-gray-900">
           Ready to simplify your links?
         </h2>
         <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg">
@@ -247,3 +247,4 @@ export default function App() {
     </Layout>
   );
 }
+

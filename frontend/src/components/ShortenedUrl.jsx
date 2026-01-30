@@ -43,3 +43,4 @@ export default function ShortenedUrl({ shortUrl, longUrl, message }) {
     </div>
   );
 }
+
