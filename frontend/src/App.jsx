@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Layout from "./components/Layout";
 import UrlForm from "./components/UrlForm";
-import ShortenedUrl from "./components/ShortenedUrl";
 import About from "./pages/About";
 import Pricing from "./pages/Pricing";
 
@@ -10,6 +9,7 @@ const API_BASE = import.meta.env.VITE_BACKEND_URL + "/api";
 export default function App() {
   const [urls, setUrls] = useState([]);
   const [currentPage, setCurrentPage] = useState("home"); // home, about, pricing
+  const [generatedUrl, setGeneratedUrl] = useState(null); // Track the most recent generated URL
 
   const handleShorten = async (longUrl, customAlias) => {
     const res = await fetch(`${API_BASE}/urls`, {
@@ -28,6 +28,11 @@ export default function App() {
 
     const data = await res.json();
     setUrls([data, ...urls]);
+    setGeneratedUrl(data); // Set as the current generated URL
+  };
+
+  const handleCreateAnother = () => {
+    setGeneratedUrl(null); // Reset to show form again
   };
 
   if (currentPage === "about") {
@@ -59,20 +64,54 @@ export default function App() {
           A fast, reliable and modern URL shortener built for developers and teams.
         </p>
 
-        <div className="mt-12 max-w-3xl mx-auto">
-          <UrlForm onShorten={handleShorten} />
-        </div>
+        {!generatedUrl ? (
+          // Default State: Show Form
+          <div className="mt-12 max-w-3xl mx-auto">
+            <UrlForm onShorten={handleShorten} />
+          </div>
+        ) : (
+          // Success State: Show Generated URL
+          <div className="mt-12 max-w-3xl mx-auto">
+            <div className="bg-white border border-gray-200 rounded-xl p-10 shadow-sm">
+              <p className="text-gray-600 text-sm font-medium mb-4">Your Short URL</p>
+              <a
+                href={generatedUrl.shortUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="block text-green-600 hover:text-green-700 break-all font-bold text-2xl transition mb-2"
+              >
+                {generatedUrl.shortUrl}
+              </a>
 
-        {urls.length > 0 && (
-          <div className="mt-16 space-y-6 max-w-3xl mx-auto">
-            {urls.map((urlData, index) => (
-              <ShortenedUrl
-                key={index}
-                shortUrl={urlData.shortUrl}
-                longUrl={urlData.longUrl}
-                message={urlData.message || ""}
-              />
-            ))}
+              {generatedUrl.message && (
+                <p className="text-green-700 font-semibold text-sm mt-4">{generatedUrl.message}</p>
+              )}
+
+              {generatedUrl.longUrl && (
+                <div className="mt-6 pt-6 border-t border-gray-200">
+                  <p className="text-gray-600 text-sm font-medium mb-2">Original URL</p>
+                  <p className="text-gray-700 break-all font-mono text-sm">{generatedUrl.longUrl}</p>
+                </div>
+              )}
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-4">
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(generatedUrl.shortUrl);
+                    alert("Copied to clipboard!");
+                  }}
+                  className="flex-1 px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition"
+                >
+                  Copy to Clipboard
+                </button>
+                <button
+                  onClick={handleCreateAnother}
+                  className="flex-1 px-6 py-3 border-2 border-green-600 text-green-600 font-semibold rounded-lg hover:bg-green-50 transition"
+                >
+                  Create Another Short URL
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </section>
