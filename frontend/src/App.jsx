@@ -69,6 +69,7 @@ export default function App() {
               <ShortenedUrl
                 key={index}
                 shortUrl={urlData.shortUrl}
+                longUrl={urlData.longUrl}
                 message={urlData.message || ""}
               />
             ))}
