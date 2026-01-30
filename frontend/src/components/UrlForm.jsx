@@ -30,7 +30,7 @@ export default function UrlForm({ onShorten }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative rounded-xl bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 shadow-sm dark:shadow-md p-6 sm:p-8 space-y-4 transition-all duration-300"
+      className="relative rounded-xl bg-gray-100 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 shadow-sm dark:shadow-md p-6 sm:p-8 space-y-4 transition-all duration-300"
     >
       <input
         type="text"
