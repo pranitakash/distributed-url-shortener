@@ -49,6 +49,7 @@ exports.shortenUrl = async (req, res) => {
 
     res.json({
       shortUrl: `${process.env.BASE_URL}/${url.shortCode}`,
+      longUrl: longUrl,
       message: customAlias ? `Custom alias "${shortCode}" created!` : "Short URL generated!"
     });
 
