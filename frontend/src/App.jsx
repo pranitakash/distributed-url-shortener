@@ -237,7 +237,7 @@ export default function App() {
 
       {/* CTA */}
       <section className="py-24 text-center px-6 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
-        <h2 className="text-4xl font-bold text-gray-900">
+        <h2 className="text-4xl font-bold text-white">
           Ready to simplify your links?
         </h2>
         <p className="mt-4 text-gray-600 dark:text-gray-300 text-lg">
