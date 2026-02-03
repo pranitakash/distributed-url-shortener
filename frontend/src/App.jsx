@@ -84,15 +84,17 @@ export default function App() {
                 {generatedUrl.shortUrl}
               </a>
 
-              {generatedUrl.message && (
-                <p className="text-green-700 dark:text-green-400 font-semibold text-sm mt-4">{generatedUrl.message}</p>
+              {generatedUrl.longUrl && (
+                <div className="mt-8 pt-6 border-t border-gray-100 dark:border-gray-800">
+                  <p className="text-gray-600 dark:text-gray-400 text-sm font-medium mb-2">Original URL</p>
+                  <p className="text-gray-700 dark:text-gray-300 break-all font-mono text-sm max-w-2xl mx-auto">
+                    {generatedUrl.longUrl}
+                  </p>
+                </div>
               )}
 
-              {generatedUrl.longUrl && (
-                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-800">
-                  <p className="text-gray-600 dark:text-gray-400 text-sm font-medium mb-2">Original URL</p>
-                  <p className="text-gray-700 dark:text-gray-300 break-all font-mono text-sm">{generatedUrl.longUrl}</p>
-                </div>
+              {generatedUrl.message && (
+                <p className="text-green-700 dark:text-green-400 font-semibold text-sm mt-4">{generatedUrl.message}</p>
               )}
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4">

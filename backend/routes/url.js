@@ -31,6 +31,7 @@ router.post("/urls", async (req, res) => {
     res.json({
       shortCode,
       shortUrl: `${baseUrl}/${shortCode}`,
+      longUrl, // Add this line
     });
   } catch (err) {
     console.error(err);
