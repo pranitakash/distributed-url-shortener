@@ -30,14 +30,14 @@ export default function UrlForm({ onShorten }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="relative rounded-xl bg-white border border-gray-200 shadow-sm p-6 sm:p-8 space-y-4"
+      className="relative rounded-xl bg-white dark:bg-[#121212] border border-gray-200 dark:border-gray-800 shadow-sm p-6 sm:p-8 space-y-4 transition-colors duration-300"
     >
       <input
         type="text"
         placeholder="https://example.com/very-long-url"
         value={longUrl}
         onChange={(e) => setLongUrl(e.target.value)}
-        className="w-full rounded-lg px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
+        className="w-full rounded-lg px-4 py-3 bg-white dark:bg-[#0a0a0a] border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
       />
 
       <input
@@ -46,7 +46,7 @@ export default function UrlForm({ onShorten }) {
         value={customAlias}
         onChange={(e) => setCustomAlias(e.target.value)}
         maxLength={20}
-        className="w-full rounded-lg px-4 py-3 bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
+        className="w-full rounded-lg px-4 py-3 bg-white dark:bg-[#0a0a0a] border border-gray-300 dark:border-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition"
       />
 
       <button

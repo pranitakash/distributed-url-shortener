@@ -25,10 +25,12 @@ router.post("/urls", async (req, res) => {
       customAlias: customAlias || undefined,
     });
 
-    // ✅ IMPORTANT CHANGE: BACKEND DOMAIN
+    // Use environment variable for BASE_URL or fallback to localhost
+    const baseUrl = process.env.BASE_URL || `http://localhost:${process.env.PORT || 5000}`;
+
     res.json({
       shortCode,
-      shortUrl: `https://url-shortener-api-fukf.onrender.com/${shortCode}`,
+      shortUrl: `${baseUrl}/${shortCode}`,
     });
   } catch (err) {
     console.error(err);
